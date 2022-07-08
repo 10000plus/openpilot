@@ -82,7 +82,7 @@ def dmonitoringd_thread(sm=None, pm=None):
       "isRHD": driver_status.wheel_on_right,
       "pP": driver_status.pose.pitch,
       "pY": driver_status.pose.yaw,
-      "mBP": 0.5*driver_status.blink.left_blink + 0.5*driver_status.blink.right_blink,
+      "mBP": driver_status.sgp,
     }
     pm.send('driverMonitoringState', dat)
 

@@ -134,6 +134,7 @@ class DriverStatus():
     self.ee2_offseter = RunningStatFilter(max_trackable=self.settings._POSE_OFFSET_MAX_COUNT)
     self.ee1_calibrated = False
     self.ee2_calibrated = False
+    self.sgp = 0.
 
     self.awareness = 1.
     self.awareness_active = 1.
@@ -262,6 +263,7 @@ class DriverStatus():
     self.blink.right_blink = driver_data.rightBlinkProb * (driver_data.rightEyeProb > self.settings._EYE_THRESHOLD) * (driver_data.sunglassesProb < self.settings._SG_THRESHOLD)
     self.eev1 = driver_data.notReadyProb[1]
     self.eev2 = driver_data.readyProb[0]
+    self.sgp = driver_data.sunglassesProb > self.settings._SG_THRESHOLD
 
     self.distracted_types = self._get_distracted_types()
     self.driver_distracted = (DistractedType.DISTRACTED_POSE in self.distracted_types or
